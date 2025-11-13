@@ -1,3 +1,5 @@
+from flask import Flask
+import threading
 import requests
 from datetime import datetime
 import time
@@ -60,6 +62,16 @@ def send_email(subject, body, to_email):
 
     except Exception as e:
         print("Failed to send email:", e)
+        def home():
+    return "Crypto Price Bot is Running"
+
+
+def run_flask():
+    app.run(host='0.0.0.0', port=8000)
+
+
+threading.Thread(target=run_flask).start()
+
 
 
 while True:
@@ -100,4 +112,5 @@ while True:
             
 
     time.sleep(check_interval)
+
 
