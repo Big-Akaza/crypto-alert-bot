@@ -62,7 +62,12 @@ def send_email(subject, body, to_email):
 
     except Exception as e:
         print("Failed to send email:", e)
-        def home():
+app = Flask(__name__)
+
+
+@app.route("/")
+
+def home():
     return "Crypto Price Bot is Running"
 
 
@@ -112,5 +117,6 @@ while True:
             
 
     time.sleep(check_interval)
+
 
 
