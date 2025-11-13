@@ -69,7 +69,11 @@ while True:
             response = requests.get(
                 f"https://api.binance.com/api/v3/ticker/price?symbol={coin}")
             data = response.json()
-            price = float(data['price'])
+            if 'price' in data:
+
+                price = float(data['price'])
+            else:
+                raise ValueError("Price data not found in the response.")
             print(f"Current price of {coin} on Binance: ${price}")
 
             with open(r"C:\something not nice\hello world\crypto_price_log.txt", "a") as file:
@@ -93,12 +97,7 @@ while True:
         except Exception as e:
             error_message = f"[{current_time}] error fetching data for {coin}: {e}\n"
             print(error_message)
-            with open(r"C:\something not nice\hello world\error_log.txt", "a") as error_file:
-                file.write(error_message)
-
-   # counter += 1
-    # if counter >= 3:
-     #   print("Completed 10 checks, exiting.")
-      #  break
+            
 
     time.sleep(check_interval)
+
